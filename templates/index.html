@@ -1,13 +1,9 @@
 {% extends "base.html" %}
-
-{% block Title %}
-	{{Judul}}
-{% endblock Title %}
-
-{% block pageTitle %}
-	{{Judul}}
-{% endblock pageTitle %}
-
+<!-- title -->
+{% block Title %} {{Judul}} {% endblock Title %}
+<!-- page title -->
+{% block pageTitle %} {{Judul}} {% endblock pageTitle %}
+<!-- content -->
 {% block contents %}
-	{{Content}}
+<div class="card card-body">{{Content}}</div>
 {% endblock contents %}

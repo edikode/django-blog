@@ -10,32 +10,39 @@
 {% endblock pageTitle %}
 
 {% block contents %}
+<div class="card card-body mb-3">
 	{{Content}}
-	<ul class="nav">
+</div>
 
-		<li class="nav-item">
-			<a class = "nav-link" href="{% url "blog:index" %}" title="">
-				All-post	
-			</a>
-			
-		</li>
+<div class="card">
+	<div class="card-body">
+		<ul class="nav">
 
-	{% for dataCategory in Categories %}
-		<li class="nav-item">
-			<a class = "nav-link" href="{% url "blog:category" categoryInput=dataCategory.category%}" title="">
-				{{dataCategory.category}}	
+			<li class="nav-item">
+				<a class = "nav-link" href="{% url "blog:index" %}" title="">
+					All-post	
+				</a>
+				
+			</li>
+
+		{% for dataCategory in Categories %}
+			<li class="nav-item">
+				<a class = "nav-link" href="{% url "blog:category" categoryInput=dataCategory.category%}" title="">
+					{{dataCategory.category}}	
+				</a>
+				
+			</li>
+		{% endfor %}
+		</ul>
+		{% for post in Posts %}
+			<a href="{% url "blog:detail" slugInput=post.slug %}" title="">
+				<h1>{{post.judul}}</h1>
 			</a>
-			
-		</li>
-	{% endfor %}
-	</ul>
-	{% for post in Posts %}
-		<a href="{% url "blog:detail" slugInput=post.slug %}" title="">
-			<h1>{{post.judul}}</h1>
-		</a>
-		<p>{{post.publish}}</p>
-		<p>{{post.body|truncatechars:200}}</p>
-	{% endfor %}
+			<p>{{post.publish}}</p>
+			<p>{{post.body|truncatechars:200}}</p>
+		{% endfor %}
+	</div>
+</div>
 {% endblock contents %}
 
 

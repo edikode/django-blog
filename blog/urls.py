@@ -1,9 +1,12 @@
-from django.conf.urls import url
+from django.urls import path, re_path
 
 from . import views
 
+app_name = 'blog'
+
 urlpatterns = [
-	url(r'^$', views.index, name="index"),
-	url(r'^post/(?P<slugInput>[\w-]+)/$', views.detailPost, name="detail"),
-	url(r'^category/(?P<categoryInput>[\w-]+)/$', views.categoryPost, name="category"),
+    path('', views.index, name="index"),
+    re_path(r'^post/(?P<slugInput>[\w-]+)/$', views.detailPost, name="detail"),
+    re_path(
+        r'^category/(?P<categoryInput>[\w-]+)/$', views.categoryPost, name="category"),
 ]

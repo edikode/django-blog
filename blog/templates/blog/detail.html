@@ -1,38 +1,35 @@
 {% extends "base.html" %}
+<!-- title -->
+{% block Title %} {{Judul}} {% endblock Title %}
+<!-- title page -->
+{% block pageTitle %} {{Judul}} {% endblock pageTitle %}
 
-{% block Title %}
-	{{Judul}}
-{% endblock Title %}
-
-
-{% block pageTitle %}
-	{{Judul}}
-{% endblock pageTitle %}
-
+<!-- content -->
 {% block contents %}
-	{{Content}}
+<div class="card card-body mb-3">{{Content}}</div>
 
-	<ul class="nav">
+<div class="card card-body">
+  <ul class="nav">
+    <li class="nav-item">
+      <a class="nav-link" href="/blog" title=""> All-post </a>
+    </li>
 
-		<li class="nav-item">
-			<a class = "nav-link" href="/blog" title="">
-				All-post	
-			</a>
-			
-		</li>
+    {% for dataCategory in Categories %}
+    <li class="nav-item">
+      <a
+        class="nav-link"
+        href="/blog/category/{{dataCategory.category}}"
+        title=""
+      >
+        {{dataCategory.category}}
+      </a>
+    </li>
+    {% endfor %}
+  </ul>
 
-	{% for dataCategory in Categories %}
-		<li class="nav-item">
-			<a class = "nav-link" href="/blog/category/{{dataCategory.category}}" title="">
-				{{dataCategory.category}}	
-			</a>
-			
-		</li>
-	{% endfor %}
-	</ul>
-
-	<h1>{{Posts.judul}}</h1>
-	<p>{{Posts.publish}}</p>
-	<p>{{Posts.body}}</p>
+  <h1>{{Posts.judul}}</h1>
+  <p>{{Posts.publish}}</p>
+  <p>{{Posts.body}}</p>
+</div>
 
 {% endblock contents %}
